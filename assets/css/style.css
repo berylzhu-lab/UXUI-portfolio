@@ -2797,3 +2797,14 @@ article,
 }
 
 .testimonials-modal { margin: auto; }
+
+
+/* phones: roomier gutters so there is open background to tap and plant flowers
+   (sides, between the two cards, and above the bottom navbar) */
+@media (max-width: 579px) {
+  main {
+    margin: 24px 32px 120px;
+  }
+
+  .sidebar { margin-bottom: 32px; }
+}

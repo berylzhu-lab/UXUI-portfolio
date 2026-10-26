@@ -111,7 +111,9 @@ const zh = {
   "contactPage.error": "没寄出去，请稍后再试，或直接发邮件给我。"
 };
 
-const LANG_KEY = "lang";
+// only an explicit click is remembered (the old "lang" key was also written automatically
+// from the browser language, so it is ignored now that English is the default)
+const LANG_KEY = "lang-choice";
 const i18nTextEls = document.querySelectorAll("[data-i18n]");
 const i18nPlaceholderEls = document.querySelectorAll("[data-i18n-placeholder]");
 const langToggleBtn = document.querySelector("[data-lang-toggle]");
@@ -140,16 +142,14 @@ const applyLang = function (lang) {
 
   langToggleBtn.textContent = lang === "zh" ? "EN" : "中文";
   langToggleBtn.setAttribute("aria-label", lang === "zh" ? "Switch to English" : "切换到中文");
-
-  try { localStorage.setItem(LANG_KEY, lang); } catch (e) { }
 }
 
+// English by default; Chinese only if the visitor chose it before
 const getInitialLang = function () {
   try {
-    const saved = localStorage.getItem(LANG_KEY);
-    if (saved === "zh" || saved === "en") return saved;
+    if (localStorage.getItem(LANG_KEY) === "zh") return "zh";
   } catch (e) { }
-  return (navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
+  return "en";
 }
 
 let currentLang = getInitialLang();
@@ -158,4 +158,5 @@ if (currentLang === "zh") applyLang("zh");
 langToggleBtn.addEventListener("click", function () {
   currentLang = currentLang === "zh" ? "en" : "zh";
   applyLang(currentLang);
+  try { localStorage.setItem(LANG_KEY, currentLang); } catch (e) { }
 });

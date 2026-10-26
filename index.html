@@ -18,6 +18,17 @@
   <link rel="stylesheet" href="./assets/css/style.css">
 
   <!--
+    - apply the saved day/night theme before first paint (night is the default)
+  -->
+  <script>
+    (function () {
+      var theme = "dark";
+      try { theme = localStorage.getItem("theme") || "dark"; } catch (e) { }
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+
+  <!--
     - google font link
   -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +37,11 @@
 </head>
 
 <body>
+
+  <!--
+    - animated background (three.js)
+  -->
+  <div class="bg-canvas" data-bg-canvas aria-hidden="true"></div>
 
   <!--
     - #MAIN
@@ -41,18 +57,22 @@
 
       <div class="sidebar-info">
 
-        <figure class="avatar-box">
-          <img src="./assets/images/beryl-avatar.png" alt="Jiajun (Beryl) Zhu" width="80">
+        <figure class="avatar-box" tabindex="0">
+          <picture>
+            <source media="(min-width: 1250px)" srcset="./assets/images/beryl-avatar-cat.png">
+            <img src="./assets/images/beryl-avatar-cat-small.png" alt="Jiajun (Beryl) Zhu, pixel cat avatar" width="76" height="76" class="avatar-pixel">
+          </picture>
+          <img src="./assets/images/beryl-avatar.jpg" alt="" width="76" height="76" class="avatar-photo" aria-hidden="true">
         </figure>
 
         <div class="info-content">
-          <h1 class="name" title="Jiajun (Beryl) Zhu">Jiajun (Beryl) Zhu</h1>
+          <h1 class="name" title="Jiajun (Beryl) Zhu" data-i18n="sidebar.name">Jiajun (Beryl) Zhu</h1>
 
-          <p class="title">UX & Product Designer</p>
+          <p class="title" data-i18n="sidebar.title">UX & Product Designer</p>
         </div>
 
         <button class="info_more-btn" data-sidebar-btn>
-          <span>Show Contacts</span>
+          <span data-i18n="sidebar.showContacts">Show Contacts</span>
 
           <ion-icon name="chevron-down"></ion-icon>
         </button>
@@ -72,7 +92,7 @@
             </div>
 
             <div class="contact-info">
-              <p class="contact-title">Email</p>
+              <p class="contact-title" data-i18n="contact.email">Email</p>
 
               <a href="mailto:berylzhu@uw.edu" class="contact-link">berylzhu@uw.edu</a>
             </div>
@@ -86,23 +106,9 @@
             </div>
 
             <div class="contact-info">
-              <p class="contact-title">Phone</p>
+              <p class="contact-title" data-i18n="contact.phone">Phone</p>
 
               <a href="tel:+12069004943" class="contact-link">+1 (206) 900-4943</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="calendar-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Birthday</p>
-
-              <time datetime="2001-04-20">April 20, 2001</time>
             </div>
 
           </li>
@@ -114,9 +120,9 @@
             </div>
 
             <div class="contact-info">
-              <p class="contact-title">Location</p>
+              <p class="contact-title" data-i18n="contact.location">Location</p>
 
-              <address>Seattle, Washington, USA</address>
+              <address data-i18n="contact.locationValue">Seattle, Washington, USA</address>
             </div>
 
           </li>
@@ -159,23 +165,34 @@
         <ul class="navbar-list">
 
           <li class="navbar-item">
-            <button class="navbar-link  active" data-nav-link>About</button>
+            <button class="navbar-link  active" data-nav-link="about" data-i18n="nav.about">About</button>
           </li>
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Resume</button>
+            <button class="navbar-link" data-nav-link="resume" data-i18n="nav.resume">Resume</button>
           </li>
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Portfolio</button>
+            <button class="navbar-link" data-nav-link="portfolio" data-i18n="nav.portfolio">Portfolio</button>
           </li>
 
           <!-- <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Blog</button>
+            <button class="navbar-link" data-nav-link="blog">Blog</button>
           </li> -->
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Contact</button>
+            <button class="navbar-link" data-nav-link="contact" data-i18n="nav.contact">Contact</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link theme-toggle" data-theme-toggle aria-label="Switch to day mode">
+              <ion-icon name="sunny-outline" class="icon-day"></ion-icon>
+              <ion-icon name="moon-outline" class="icon-night"></ion-icon>
+            </button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link lang-toggle" data-lang-toggle aria-label="切换到中文">中文</button>
           </li>
 
         </ul>
@@ -193,24 +210,20 @@
       <article class="about  active" data-page="about">
 
         <header>
-          <h2 class="h2 article-title">About me</h2>
+          <h2 class="h2 article-title" data-i18n="about.title">About me</h2>
         </header>
 
         <section class="about-text">
-          <p>
-            I'm Creative UI/UX Designer from Seattle, Washington, 
-            studying at the University of Washington merging Digital Media, Engineering and Architecture to create 
-            intuitive, measurable experiences.
-            I possess strong technical fluency in Figma, Unity, and Wordpress, allowing me to prototype rapidly and 
-            analyze results rigorously.
+          <p data-i18n="about.p1">
+            I'm a UX & Product Designer based in Seattle, and a Digital Media master's candidate at the
+            University of Washington (graduating Spring 2027). My background spans architecture, digital media,
+            and engineering, and my UX work ranges from AI 3D-generation products to education and nonprofit web.
           </p>
 
-          <p>
-            My job is to build your website so that it is functional and user-friendly but at the same time attractive.
-            Moreover, I
-            add personal touch to your product and make sure that is eye-catching and easy to use. My aim is to bring
-            across your
-            message and identity in the most creative way.
+          <p data-i18n="about.p2">
+            I blend technical fluency in Figma and Unity with research rigor to prototype quickly and validate
+            designs with real users. I'm currently a Product Builder Intern at Meshy and am seeking full-time
+            UX design roles.
           </p>
         </section>
 
@@ -221,21 +234,20 @@
 
         <section class="service">
 
-          <h3 class="h3 service-title">What i'm doing</h3>
+          <h3 class="h3 service-title" data-i18n="about.servicesTitle">What I'm doing</h3>
 
           <ul class="service-list">
 
             <li class="service-item">
 
               <div class="service-icon-box">
-                <img src="./assets/images/Group 8867.png
-                " alt="design icon" width="40">
+                <img src="./assets/images/Group 8867.png" alt="design icon" width="34">
               </div>
 
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">UX & Visual Design</h4>
+                <h4 class="h4 service-item-title" data-i18n="service.1.title">UX & Visual Design</h4>
 
-                <p class="service-item-text">
+                <p class="service-item-text" data-i18n="service.1.text">
                   Leading end-to-end digital product design to build engaging, human-centered 
                   experiences that seamlessly balance aesthetics with high usability.
                 </p>
@@ -246,13 +258,13 @@
             <li class="service-item">
 
               <div class="service-icon-box">
-                <img src="./assets/images/Group 8868.png" alt="Visual Design icon" width="40">
+                <img src="./assets/images/Group 8868.png" alt="Visual Design icon" width="34">
               </div>
 
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">Design Systems & Prototyping</h4>
+                <h4 class="h4 service-item-title" data-i18n="service.2.title">Design Systems & Prototyping</h4>
 
-                <p class="service-item-text">
+                <p class="service-item-text" data-i18n="service.2.text">
                   Building scalable visual component libraries and high-fidelity prototypes to 
                   ensure brand consistency and streamline cross-functional workflows.
                 </p>
@@ -263,13 +275,13 @@
             <li class="service-item">
 
               <div class="service-icon-box">
-                <img src="./assets/images/Group 8869.png" alt="mobile app icon" width="40">
+                <img src="./assets/images/Group 8869.png" alt="mobile app icon" width="34">
               </div>
 
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">Motion & Interaction</h4>
+                <h4 class="h4 service-item-title" data-i18n="service.3.title">Motion & Interaction</h4>
 
-                <p class="service-item-text">
+                <p class="service-item-text" data-i18n="service.3.text">
                   Utilizing dynamic visual storytelling and micro-interactions to provide 
                   intuitive visual feedback and enhance overall digital engagement.
                 </p>
@@ -280,13 +292,13 @@
             <li class="service-item">
 
               <div class="service-icon-box">
-                <img src="./assets/images/Group 8870.png" alt="camera icon" width="40">
+                <img src="./assets/images/Group 8870.png" alt="camera icon" width="34">
               </div>
 
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">Spatial & Game UX</h4>
+                <h4 class="h4 service-item-title" data-i18n="service.4.title">Spatial & Game UX</h4>
 
-                <p class="service-item-text">
+                <p class="service-item-text" data-i18n="service.4.text">
                   Leveraging 3D modeling and engine capabilities to build immersive player 
                   experiences, intuitive HUDs, and engaging AR/VR environments.
                 </p>
@@ -305,21 +317,32 @@
 
         <section class="testimonials">
 
-          <h3 class="h3 testimonials-title">Testimonials</h3>
+          <div class="section-header">
+            <h3 class="h3 testimonials-title" data-i18n="testimonials.title">Testimonials</h3>
 
-          <ul class="testimonials-list has-scrollbar">
+            <div class="scroll-controls">
+              <button class="scroll-btn" data-scroll-prev="testimonials" aria-label="Previous">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+              </button>
+              <button class="scroll-btn" data-scroll-next="testimonials" aria-label="Next">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+              </button>
+            </div>
+          </div>
+
+          <ul class="testimonials-list has-scrollbar" data-scroll-list="testimonials">
 
             <li class="testimonials-item">
               <div class="content-card" data-testimonials-item>
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-1.png" alt="Leota Mohr" width="60" data-testimonials-avatar>
+                  <canvas class="pixel-avatar" width="32" height="32" role="img" aria-label="Leota Mohr" data-pixel-avatar="leota" data-testimonials-avatar></canvas>
                 </figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Leota Mohr</h4>
 
                 <div class="testimonials-text" data-testimonials-text>
-                  <p>
+                  <p data-i18n="testimonials.1">
                     Jiajun generously volunteered her time and expertise to support Broadway Bound Children’s Theatre, 
                     a nonprofit organization, on our website redesign. She brought professionalism, thoughtfulness, and 
                     a strong collaborative spirit to the work, and was a pleasure to partner with from start to finish. 
@@ -336,13 +359,13 @@
               <div class="content-card" data-testimonials-item>
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-4.png" alt="Jiahua Yin" width="60" data-testimonials-avatar>
+                  <canvas class="pixel-avatar" width="32" height="32" role="img" aria-label="Jiahua Yin" data-pixel-avatar="jiahua" data-testimonials-avatar></canvas>
                 </figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Jiahua Yin</h4>
 
                 <div class="testimonials-text" data-testimonials-text>
-                  <p>
+                  <p data-i18n="testimonials.2">
                    Jiajun is a quick learner who always maintains a positive attitude. During her internship, she 
                    quickly mastered essential architectural software like Auto CAD, Sketch-Up, Photoshop, and 
                    Illustrator, and also took the initiative to leam Figma, an effective interactive tool. Her strong 
@@ -372,13 +395,13 @@
               <div class="content-card" data-testimonials-item>
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-2.png" alt="Chuan Wang" width="60" data-testimonials-avatar>
+                  <canvas class="pixel-avatar" width="32" height="32" role="img" aria-label="Chuan Wang" data-pixel-avatar="chuan" data-testimonials-avatar></canvas>
                 </figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Chuan Wang</h4>
 
                 <div class="testimonials-text" data-testimonials-text>
-                  <p>
+                  <p data-i18n="testimonials.3">
                     Throughout her time in the SRTP project - Perceptual Comparison and Simulation of Real and 
                     Virtual Street Environments, Jiajun consistently demonstrated great qualities that differentiated 
                     her from other peers. She collected data efficiently, adopted interdisciplinary ideas effortlessly, 
@@ -428,7 +451,7 @@
 
             <div class="modal-img-wrapper">
               <figure class="modal-avatar-box">
-                <img src="./assets/images/avatar-1.png" alt="Leota Mohr" width="80" data-modal-img>
+                <canvas class="pixel-avatar" width="32" height="32" role="img" aria-label="Leota Mohr" data-pixel-avatar="leota" data-modal-img></canvas>
               </figure>
 
               <img src="./assets/images/icon-quote.svg" alt="quote icon">
@@ -461,7 +484,7 @@
 
         <section class="clients">
 
-          <h3 class="h3 clients-title">Clients</h3>
+          <h3 class="h3 clients-title" data-i18n="clients.title">Clients</h3>
 
           <ul class="clients-list has-scrollbar">
 
@@ -474,6 +497,12 @@
             <li class="clients-item">
               <a href="#">
                 <img src="./assets/images/logo-2-ospi.png" alt="client logo">
+              </a>
+            </li>
+
+            <li class="clients-item">
+              <a href="https://www.meshy.ai" target="_blank" rel="noopener">
+                <img src="./assets/images/logo-3-meshy.svg" alt="Meshy logo">
               </a>
             </li>
 
@@ -495,7 +524,7 @@
       <article class="resume" data-page="resume">
 
         <header>
-          <h2 class="h2 article-title">Resume</h2>
+          <h2 class="h2 article-title" data-i18n="resume.title">Resume</h2>
         </header>
 
         <section class="timeline">
@@ -505,22 +534,22 @@
               <ion-icon name="book-outline"></ion-icon>
             </div>
 
-            <h3 class="h3">Education</h3>
+            <h3 class="h3" data-i18n="resume.education">Education</h3>
           </div>
 
           <ol class="timeline-list">
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">University of Washington</h4>
+              <h4 class="h4 timeline-item-title" data-i18n="edu.uw.school">University of Washington</h4>
 
-              <p class="timeline-text">
+              <p class="timeline-text" data-i18n="edu.uw.degree">
                 Master of Communication - Digital Media
               </p>
 
-              <span>2025 — Present (Expected 2027)</span>
+              <span data-i18n="edu.uw.date">2025 — Spring 2027 (Expected)</span>
 
-              <p class="timeline-text">
+              <p class="timeline-text" data-i18n="edu.uw.desc">
                 <strong>GPA:</strong> 3.96/4.0 <br>
                •	Focusing on digital media strategy, user experience research, and interactive design.
               </p>
@@ -529,25 +558,26 @@
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Southeast University</h4>
+              <h4 class="h4 timeline-item-title" data-i18n="edu.seu.school">Southeast University</h4>
 
-              <p class="timeline-text">
+              <p class="timeline-text" data-i18n="edu.seu.degree">
                 Bachelor of Architecture
               </p>
 
               <span>2019 — 2025</span>
 
-              <p class="timeline-text">
+              <p class="timeline-text" data-i18n="edu.seu.desc">
                 <strong>GPA:</strong> 3.93/4.0 <br>
-               •	Completed foundational coursework in Information Science and 
-                Engineering (2019-2020) before transitioning to Architecture. 
-                This interdisciplinary background provides a unique blend of 
-                technical systems thinking and human-centered design.
+               •	Completed foundational coursework in Information Science and
+                Engineering (2019-2020) before transitioning to Architecture.
+                This interdisciplinary background provides a unique blend of
+                technical systems thinking and human-centered design.<br>
+               •	Architecture trained my spatial thinking: I approach interfaces the way I approach
+                buildings, considering how people move through a space, where their attention lands,
+                and how structure quietly guides them.
               </p>
 
             </li>
-
-            
 
           </ol>
 
@@ -557,70 +587,91 @@
 
           <div class="title-wrapper">
             <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
+              <ion-icon name="briefcase-outline"></ion-icon>
             </div>
 
-            <h3 class="h3">Experience</h3>
+            <h3 class="h3" data-i18n="resume.experience">Experience</h3>
           </div>
 
           <ol class="timeline-list">
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Visual & Graphic Designer</h4>
-              
-              <p class="timeline-text">
+              <h4 class="h4 timeline-item-title" data-i18n="exp.meshy.role">Product Builder Intern</h4>
+
+              <p class="timeline-text" data-i18n="exp.meshy.org">
+                Meshy · AI 3D-generation platform (text-to-3D / image-to-3D)
+              </p>
+
+              <span data-i18n="exp.meshy.date">Summer 2026 — Present</span>
+
+              <p class="timeline-text" data-i18n="exp.meshy.desc">
+                <em>Full-time in the Bay Area, summer 2026; part-time remote since Oct 2026.</em><br>
+                •	Build and design the main site (meshy.ai), implementing new pages and features.<br>
+                •	Help run A/B tests comparing design solutions to evaluate which performs better.<br>
+                •	Test new and pre-release features and bring structured feedback to product and design teams;
+                partner with product, design, and marketing to turn rough ideas into shippable demos.<br>
+                •	Own the site-wide emotional IP integration: a mushroom mascot system (mycelium textures,
+                illustration, motion, narrative), aligning the integration direction with the design mentor.<br>
+                •	Support onboarding and activation initiatives, collaborating closely with product managers and engineers.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title" data-i18n="exp.ospi.role">Visual & Graphic Designer</h4>
+
+              <p class="timeline-text" data-i18n="exp.ospi.org">
                 Office of Superintendent of Public Instruction
               </p>
 
-              <span>Apr 2026 — Present</span>
+              <span data-i18n="exp.ospi.date">Apr 2026 — Aug 2026</span>
 
-              <p class="timeline-text">
-                •	Developed scalable visual component libraries and motion assets, ensuring brand 
-                consistency across digital platforms and streamlining the design-to-production workflow.<br>
-                •	Translated complex education and policy data into accessible digital experiences, 
-                utilizing strong information architecture and user-centered layout structures to enhance 
+              <p class="timeline-text" data-i18n="exp.ospi.desc">
+                •	Built scalable visual component libraries and motion assets to ensure brand consistency
+                across digital platforms and streamline the design-to-production workflow.<br>
+                •	Translated complex education and policy data into accessible digital experiences,
+                using strong information architecture and user-centered layout structures to improve
                 public comprehension.
-
               </p>
 
             </li>
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">UX Designer</h4>
-              
-              <p class="timeline-text">
+              <h4 class="h4 timeline-item-title" data-i18n="exp.bbct.role">UX Designer</h4>
+
+              <p class="timeline-text" data-i18n="exp.bbct.org">
                 Broadway Bound Children's Theatre
               </p>
 
-              <span>Oct 2025 — Mar 2026</span>
+              <span data-i18n="exp.bbct.date">Oct 2025 — Mar 2026</span>
 
-              <p class="timeline-text">
-                •	Redesigned the end-to-end web experience to improve content discoverability and audience 
+              <p class="timeline-text" data-i18n="exp.bbct.desc">
+                •	Redesigned the end-to-end web experience to improve content discoverability and audience
                 engagement, aligning user needs with the organization's core mission.<br>
-                •	Restructured the website’s information architecture and navigation system, significantly 
-                reducing the cognitive load for users and streamlining the content update process for internal teams.<br>
-                •	Created high-fidelity prototypes and modern UI layouts, ensuring a responsive, user-friendly 
-                digital presence across all devices.
-
+                •	Restructured the information architecture and navigation system to reduce cognitive load
+                for users and streamline the content update process for internal teams.<br>
+                •	Created high-fidelity, responsive prototypes and modern UI layouts for use across all devices.
               </p>
 
             </li>
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Architectural & Spatial Designer</h4>
+              <h4 class="h4 timeline-item-title" data-i18n="exp.yzu.role">Architectural & Spatial Designer</h4>
 
-              <p class="timeline-text">
+              <p class="timeline-text" data-i18n="exp.yzu.org">
                 Engineering Design & Research Institute Co., Ltd. of Yangzhou University
               </p>
 
-              <span>Aug 2024 — Nov 2024</span>
+              <span data-i18n="exp.yzu.date">Aug 2024 — Nov 2024</span>
 
-              <p class="timeline-text">
-                •	Conducted preliminary site research and developed high-fidelity 3D spatial renderings, effectively 
-                prioritizing user flows and communicating concepts to cross-functional teams.
+              <p class="timeline-text" data-i18n="exp.yzu.desc">
+                •	Conducted preliminary site research and developed high-fidelity 3D spatial renderings
+                that prioritized user flows.<br>
+                •	Communicated design concepts to cross-functional teams to support shared decision-making.
               </p>
 
             </li>
@@ -631,215 +682,68 @@
 
         <section class="skill">
 
-          <h3 class="h3 skills-title">My skills</h3>
+          <h3 class="h3 skills-title" data-i18n="skills.title">My skills</h3>
 
           <ul class="skills-list content-card">
 
             <li class="skills-item">
 
               <div class="title-wrapper">
-                <h5 class="h5">Design & Prototyping</h5>
-                
+                <h5 class="h5" data-i18n="skills.design">Design & Prototyping</h5>
               </div>
 
-              
-              <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
-
-               <span style="background: var(--orange-yellow-crayola);
-               color: var(--smoky-black); 
-               padding: 4px 14px; 
-               border-radius: 20px; 
-               font-size: var(--fs-7); 
-               font-weight: var(--fw-500); 
-               display: inline-block; 
-               margin-right: 8px; 
-               margin-bottom: 8px;">
-               Figma
-               </span>
-               <span style="background: var(--orange-yellow-crayola);
-               color: var(--smoky-black); 
-               padding: 4px 14px; 
-               border-radius: 20px; 
-               font-size: var(--fs-7); 
-               font-weight: var(--fw-500); 
-               display: inline-block; 
-               margin-right: 8px; 
-               margin-bottom: 8px;">
-               Photoshop
-               </span>
-               <span style="background: var(--orange-yellow-crayola);
-               color: var(--smoky-black); 
-               padding: 4px 14px; 
-               border-radius: 20px; 
-               font-size: var(--fs-7); 
-               font-weight: var(--fw-500); 
-               display: inline-block; 
-               margin-right: 8px; 
-               margin-bottom: 8px;">
-               Illustrator
-               </span>
-               <span style="background: var(--orange-yellow-crayola);
-               color: var(--smoky-black); 
-               padding: 4px 14px; 
-               border-radius: 20px; 
-               font-size: var(--fs-7); 
-               font-weight: var(--fw-500); 
-               display: inline-block; 
-               margin-right: 8px; 
-               margin-bottom: 8px;">
-               InDesign
-               </span>
-              
+              <div class="skill-tags">
+                <span class="skill-tag">Figma</span>
+                <span class="skill-tag">Photoshop</span>
+                <span class="skill-tag">Illustrator</span>
+                <span class="skill-tag">InDesign</span>
               </div>
 
             </li>
-            
+
             <li class="skills-item">
 
               <div class="title-wrapper">
-                <h5 class="h5">3D & Game Engine</h5>
-                
+                <h5 class="h5" data-i18n="skills.3d">3D & Game Engine</h5>
               </div>
 
-              
-              <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
-
-               <span style="background: var(--orange-yellow-crayola);
-               color: var(--smoky-black); 
-               padding: 4px 14px; 
-               border-radius: 20px; 
-               font-size: var(--fs-7); 
-               font-weight: var(--fw-500); 
-               display: inline-block; 
-               margin-right: 8px; 
-               margin-bottom: 8px;">
-               Unity
-               </span>
-               <span style="background: var(--orange-yellow-crayola);
-               color: var(--smoky-black); 
-               padding: 4px 14px; 
-               border-radius: 20px; 
-               font-size: var(--fs-7); 
-               font-weight: var(--fw-500); 
-               display: inline-block; 
-               margin-right: 8px; 
-               margin-bottom: 8px;">
-               Unreal Engine
-               </span>
-               <span style="background: var(--orange-yellow-crayola);
-               color: var(--smoky-black); 
-               padding: 4px 14px; 
-               border-radius: 20px; 
-               font-size: var(--fs-7); 
-               font-weight: var(--fw-500); 
-               display: inline-block; 
-               margin-right: 8px; 
-               margin-bottom: 8px;">
-               Blender
-               </span>
-               <span style="background: var(--orange-yellow-crayola);
-               color: var(--smoky-black); 
-               padding: 4px 14px; 
-               border-radius: 20px; 
-               font-size: var(--fs-7); 
-               font-weight: var(--fw-500); 
-               display: inline-block; 
-               margin-right: 8px; 
-               margin-bottom: 8px;">
-               TouchDesigner
-               </span>
-              
+              <div class="skill-tags">
+                <span class="skill-tag">Unity</span>
+                <span class="skill-tag">Unreal Engine</span>
+                <span class="skill-tag">Blender</span>
+                <span class="skill-tag">TouchDesigner</span>
               </div>
 
             </li>
-           
+
             <li class="skills-item">
 
               <div class="title-wrapper">
-                <h5 class="h5">Research & Analytics</h5>
-                
+                <h5 class="h5" data-i18n="skills.research">Research & Analytics</h5>
               </div>
 
-              
-              <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
-
-               <span style="background: var(--orange-yellow-crayola);
-               color: var(--smoky-black); 
-               padding: 4px 14px; 
-               border-radius: 20px; 
-               font-size: var(--fs-7); 
-               font-weight: var(--fw-500); 
-               display: inline-block; 
-               margin-right: 8px; 
-               margin-bottom: 8px;">
-               Tobii Pro Lab
-               </span>
-               <span style="background: var(--orange-yellow-crayola);
-               color: var(--smoky-black); 
-               padding: 4px 14px; 
-               border-radius: 20px; 
-               font-size: var(--fs-7); 
-               font-weight: var(--fw-500); 
-               display: inline-block; 
-               margin-right: 8px; 
-               margin-bottom: 8px;">
-               SPSS
-               </span>
-               
+              <div class="skill-tags">
+                <span class="skill-tag">Tobii Pro Lab</span>
+                <span class="skill-tag">SPSS</span>
               </div>
 
             </li>
-           
-             <li class="skills-item">
+
+            <li class="skills-item">
 
               <div class="title-wrapper">
-                <h5 class="h5">Web & Tech</h5>
-                
+                <h5 class="h5" data-i18n="skills.web">Web & Tech</h5>
               </div>
 
-              
-              <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
-
-               <span style="background: var(--orange-yellow-crayola);
-               color: var(--smoky-black); 
-               padding: 4px 14px; 
-               border-radius: 20px; 
-               font-size: var(--fs-7); 
-               font-weight: var(--fw-500); 
-               display: inline-block; 
-               margin-right: 8px; 
-               margin-bottom: 8px;">
-               HTML/CSS Basic
-               </span>
-               <span style="background: var(--orange-yellow-crayola);
-               color: var(--smoky-black); 
-               padding: 4px 14px; 
-               border-radius: 20px; 
-               font-size: var(--fs-7); 
-               font-weight: var(--fw-500); 
-               display: inline-block; 
-               margin-right: 8px; 
-               margin-bottom: 8px;">
-               WordPress
-               </span>
-               </span>
-               <span style="background: var(--orange-yellow-crayola);
-               color: var(--smoky-black); 
-               padding: 4px 14px; 
-               border-radius: 20px; 
-               font-size: var(--fs-7); 
-               font-weight: var(--fw-500); 
-               display: inline-block; 
-               margin-right: 8px; 
-               margin-bottom: 8px;">
-               GitHub Pages
-               </span>
-
+              <div class="skill-tags">
+                <span class="skill-tag">HTML/CSS</span>
+                <span class="skill-tag">WordPress</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">GitHub Pages</span>
+                <span class="skill-tag">Vibe Coding (Claude Code, Cursor)</span>
               </div>
 
             </li>
-
-            
 
           </ul>
 
@@ -858,7 +762,7 @@
       <article class="portfolio" data-page="portfolio">
 
         <header>
-          <h2 class="h2 article-title">Portfolio</h2>
+          <h2 class="h2 article-title" data-i18n="portfolio.title">Portfolio</h2>
         </header>
 
         <section class="projects">
@@ -866,19 +770,19 @@
           <ul class="filter-list">
 
             <li class="filter-item">
-              <button class="active" data-filter-btn>All</button>
+              <button class="active" data-filter-btn="all" data-i18n="filter.all">All</button>
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>Product Design</button>
+              <button data-filter-btn="product design" data-i18n="filter.product">Product Design</button>
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>Game & Spatial</button>
+              <button data-filter-btn="game & spatial" data-i18n="filter.game">Game & Spatial</button>
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>Visual Design</button>
+              <button data-filter-btn="visual design" data-i18n="filter.visual">Visual Design</button>
             </li>
 
           </ul>
@@ -887,7 +791,7 @@
 
             <button class="filter-select" data-select>
 
-              <div class="select-value" data-selecct-value>Select category</div>
+              <div class="select-value" data-selecct-value data-i18n="filter.select">Select category</div>
 
               <div class="select-icon">
                 <ion-icon name="chevron-down"></ion-icon>
@@ -898,19 +802,19 @@
             <ul class="select-list">
 
               <li class="select-item">
-                <button data-select-item>All</button>
+                <button data-select-item="all" data-i18n="filter.all">All</button>
               </li>
 
               <li class="select-item">
-                <button data-select-item>Product Design</button>
+                <button data-select-item="product design" data-i18n="filter.product">Product Design</button>
               </li>
 
               <li class="select-item">
-                <button data-select-item>Game & Spatial</button>
+                <button data-select-item="game & spatial" data-i18n="filter.game">Game & Spatial</button>
               </li>
 
               <li class="select-item">
-                <button data-select-item>Visual Design</button>
+                <button data-select-item="visual design" data-i18n="filter.visual">Visual Design</button>
               </li>
 
             </ul>
@@ -920,7 +824,7 @@
           <ul class="project-list">
 
             <li class="project-item  active" data-filter-item data-category="game & spatial">
-              <a href="project-1.html" target="_blank">
+              <a href="project-1.html" target="_blank" data-pdf="./assets/pdf/xr.pdf">
 
                 <figure class="project-img">
                   <div class="project-item-icon-box">
@@ -932,13 +836,13 @@
 
                 <h3 class="project-title">Emotional Ecosystem</h3>
 
-                <p class="project-category">Game & Spatial</p>
+                <p class="project-category" data-i18n="filter.game">Game & Spatial</p>
 
               </a>
             </li>
 
             <li class="project-item  active" data-filter-item data-category="game & spatial">
-              <a href="project-2.html" target="_blank">
+              <a href="project-2.html" target="_blank" data-pdf="./assets/pdf/wfc.pdf">
 
                 <figure class="project-img">
                   <div class="project-item-icon-box">
@@ -950,13 +854,13 @@
 
                 <h3 class="project-title">Shadow City</h3>
 
-                <p class="project-category">Game & Spatial</p>
+                <p class="project-category" data-i18n="filter.game">Game & Spatial</p>
 
               </a>
             </li>
 
             <li class="project-item  active" data-filter-item data-category="product design">
-              <a href="project-3.html" target="_blank">
+              <a href="project-3.html" target="_blank" data-pdf="./assets/pdf/zoo.pdf">
 
                 <figure class="project-img">
                   <div class="project-item-icon-box">
@@ -966,15 +870,15 @@
                   <img src="./assets/images/project-3.jpg" alt="hongshan forest zoo app" loading="lazy">
                 </figure>
 
-                <h3 class="project-title">Hongshan Forest Zoo App</h3>
+                <h3 class="project-title" data-i18n="project.zoo">Hongshan Forest Zoo App</h3>
 
-                <p class="project-category">Product Design</p>
+                <p class="project-category" data-i18n="filter.product">Product Design</p>
 
               </a>
             </li>
 
             <li class="project-item  active" data-filter-item data-category="game & spatial">
-              <a href="project-4.html" target="_blank">
+              <a href="project-4.html" target="_blank" data-pdf="./assets/pdf/mushroom.pdf">
 
                 <figure class="project-img">
                   <div class="project-item-icon-box">
@@ -986,13 +890,13 @@
 
                 <h3 class="project-title">Mushroom</h3>
 
-                <p class="project-category">Game & Spatial</p>
+                <p class="project-category" data-i18n="filter.game">Game & Spatial</p>
 
               </a>
             </li>
 
             <li class="project-item  active" data-filter-item data-category="game & spatial">
-              <a href="project-5.html" target="_blank">
+              <a href="project-5.html" target="_blank" data-pdf="./assets/pdf/lilaland.pdf">
 
                 <figure class="project-img">
                   <div class="project-item-icon-box">
@@ -1004,13 +908,13 @@
 
                 <h3 class="project-title">Lilaland</h3>
 
-                <p class="project-category">Game & Spatial</p>
+                <p class="project-category" data-i18n="filter.game">Game & Spatial</p>
 
               </a>
             </li>
 
             <li class="project-item  active" data-filter-item data-category="game & spatial">
-              <a href="project-6.html" target="_blank">
+              <a href="project-6.html" target="_blank" data-pdf="./assets/pdf/bamboo.pdf">
 
                 <figure class="project-img">
                   <div class="project-item-icon-box">
@@ -1022,7 +926,7 @@
 
                 <h3 class="project-title">Bamboo Shadow</h3>
 
-                <p class="project-category">Game & Spatial</p>
+                <p class="project-category" data-i18n="filter.game">Game & Spatial</p>
 
               </a>
             </li>
@@ -1058,7 +962,7 @@
 
                 <h3 class="project-title">Task Manager</h3>
 
-                <p class="project-category">Game & Spatial</p>
+                <p class="project-category" data-i18n="filter.game">Game & Spatial</p>
 
               </a>
             </li>
@@ -1290,37 +1194,72 @@
       <article class="contact" data-page="contact">
 
         <header>
-          <h2 class="h2 article-title">Contact</h2>
+          <h2 class="h2 article-title" data-i18n="contactPage.title">Contact</h2>
         </header>
 
-        <section class="mapbox" data-mapbox>
-          <figure>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10750.183878483413!2d-122.31343208327749!3d47.65438919115437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54901492f492ee53%3A0xc49de620ee4a0b02!2sUniversity%20of%20Washington%2C%20Seattle%2C%20WA!5e0!3m2!1sen!2sus!4v1784339123430!5m2!1sen!2sus"
-              width="400" height="300" loading="lazy"></iframe>
-          </figure>
+        <!--
+          - pixel mailbox: click to open the message form; a sent message drops back into the box
+        -->
+        <section class="mailbox-scene">
+
+          <button class="mailbox-btn" type="button" aria-expanded="false" aria-controls="contact-form" data-mailbox>
+            <canvas class="mailbox-canvas" width="80" height="64" data-mailbox-canvas></canvas>
+            <span class="visually-hidden" data-i18n="contactPage.mailHint">Click the mailbox to leave me a message</span>
+          </button>
+
+          <p class="mailbox-hint" aria-hidden="true" data-mailbox-hint data-i18n="contactPage.mailHint">Click the mailbox to leave me a message</p>
+
+          <p class="mailbox-status" role="status" data-mailbox-status></p>
+
         </section>
 
-        <section class="contact-form">
+        <section class="contact-form" id="contact-form" data-contact-form>
 
-          <h3 class="h3 form-title">Contact Form</h3>
+          <h3 class="h3 form-title" data-i18n="contactPage.form">Contact Form</h3>
 
           <form action="https://formspree.io/f/xvzekeqj" method="POST" class="form" data-form>
 
             <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+              <input type="text" name="fullname" class="form-input" placeholder="Full name" data-i18n-placeholder="contactPage.name" required data-form-input>
 
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+              <input type="email" name="email" class="form-input" placeholder="Email address" data-i18n-placeholder="contactPage.emailAddr" required data-form-input>
             </div>
 
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+            <textarea name="message" class="form-input" placeholder="Your Message" data-i18n-placeholder="contactPage.message" required data-form-input></textarea>
 
             <button class="form-btn" type="submit" disabled data-form-btn>
               <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
+              <span data-i18n="contactPage.send">Send Message</span>
             </button>
 
           </form>
+
+        </section>
+
+        <!--
+          - game-style minimap: tinted, non-interactive strip that unfolds into the full map (button or "M" key)
+        -->
+        <section class="game-map" data-game-map>
+
+          <div class="game-map-header">
+            <p class="game-map-title">
+              <ion-icon name="location-outline"></ion-icon>
+              <span data-i18n="map.title">Seattle, WA · University of Washington</span>
+            </p>
+
+            <button class="game-map-btn" type="button" aria-expanded="false" data-map-toggle>
+              <span data-map-toggle-label data-i18n="map.open">Open map</span>
+              <kbd>M</kbd>
+            </button>
+          </div>
+
+          <div class="game-map-view">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10750.183878483413!2d-122.31343208327749!3d47.65438919115437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54901492f492ee53%3A0xc49de620ee4a0b02!2sUniversity%20of%20Washington%2C%20Seattle%2C%20WA!5e0!3m2!1sen!2sus!4v1784339123430!5m2!1sen!2sus"
+              title="Map of the University of Washington, Seattle" loading="lazy" tabindex="-1"></iframe>
+            <div class="game-map-overlay" aria-hidden="true"></div>
+            <span class="game-map-pin" aria-hidden="true"><ion-icon name="location-outline"></ion-icon></span>
+          </div>
 
         </section>
 
@@ -1330,6 +1269,37 @@
 
   </main>
 
+  <!--
+    - #PDF VIEWER (portfolio projects open here instead of a new tab)
+  -->
+
+  <div class="pdf-modal" data-pdf-modal role="dialog" aria-modal="true" aria-labelledby="pdf-modal-title" hidden>
+
+    <div class="pdf-modal-overlay" data-pdf-close></div>
+
+    <section class="pdf-modal-panel">
+
+      <header class="pdf-modal-header">
+        <h3 class="h3 pdf-modal-title" id="pdf-modal-title" data-pdf-title></h3>
+
+        <a class="pdf-modal-btn" href="#" target="_blank" rel="noopener" data-pdf-newtab>
+          <ion-icon name="open-outline"></ion-icon>
+          <span data-i18n="pdf.newTab">Open in new tab</span>
+        </a>
+
+        <button class="pdf-modal-btn pdf-modal-close" data-pdf-close aria-label="Close">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+      </header>
+
+      <div class="pdf-modal-body" data-pdf-body>
+        <p class="pdf-modal-status" data-pdf-status data-i18n="pdf.loading">Loading…</p>
+      </div>
+
+    </section>
+
+  </div>
+
 
 
 
@@ -1338,13 +1308,16 @@
   <!--
     - custom js link
   -->
+  <script src="./assets/js/pixel-icons.js"></script>
   <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/i18n.js"></script>
 
-  <!--
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="./assets/js/cat-avatar.js"></script>
+  <script src="./assets/js/pixel-avatars.js"></script>
+  <script src="./assets/js/pixel-game.js"></script>
+  <script src="./assets/js/pdf-viewer.js"></script>
+  <script src="./assets/js/mailbox.js"></script>
+  <script src="./assets/js/game-map.js"></script>
 
 </body>
 

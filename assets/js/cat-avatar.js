@@ -191,6 +191,13 @@
     lastMove = performance.now();
   });
 
+  // touch screens have no hover: a tap is the point of attention for a moment
+  window.addEventListener('pointerdown', function (e) {
+    if (e.pointerType === 'mouse') return;
+    cursor = { x: e.clientX, y: e.clientY };
+    lastMove = performance.now();
+  });
+
   let nextBlink = performance.now() + 2500;
   let blinkUntil = 0;
   let doubleBlinkAt = 0;

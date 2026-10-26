@@ -300,6 +300,14 @@
     lastMove = performance.now();
   });
 
+  // on touch screens a tap calls the butterflies over to circle that spot for a moment
+  // (held 1.5s longer than a mouse pause, since they need time to fly over)
+  window.addEventListener('pointerdown', function (e) {
+    if (e.pointerType === 'mouse') return;
+    cursor = { x: e.clientX / PX, y: e.clientY / PX };
+    lastMove = performance.now() + 1500;
+  });
+
   const pickFlower = function (b, now) {
     const taken = butterflies.filter(function (o) { return o !== b && o.flower; }).map(function (o) { return o.flower; });
     const options = plants.filter(function (p) {

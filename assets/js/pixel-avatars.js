@@ -258,12 +258,22 @@
   let nextBlink = 0;
   let drawn = '';
 
-  window.addEventListener('pointermove', function (e) {
-    if (e.pointerType === 'touch') return;
+  const lookAt = function (x, y) {
     lastPointer = performance.now();
     const r = modalCanvas.getBoundingClientRect();
-    look.tx = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / 260));
-    look.ty = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / 220));
+    look.tx = Math.max(-1, Math.min(1, (x - (r.left + r.width / 2)) / 260));
+    look.ty = Math.max(-1, Math.min(1, (y - (r.top + r.height / 2)) / 220));
+  };
+
+  window.addEventListener('pointermove', function (e) {
+    if (e.pointerType === 'touch') return;
+    lookAt(e.clientX, e.clientY);
+  });
+
+  // touch screens: the portrait turns toward wherever you tap, then goes back to looking around
+  window.addEventListener('pointerdown', function (e) {
+    if (e.pointerType === 'mouse') return;
+    lookAt(e.clientX, e.clientY);
   });
 
   // called by script.js when a testimonial opens: start by glancing away, then turn to the cursor

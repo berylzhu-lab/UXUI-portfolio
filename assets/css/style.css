@@ -2786,3 +2786,14 @@ article,
   border: 1px solid var(--glass-border);
   border-radius: 10px;
 }
+
+
+/* testimonial popup: center with auto margins instead of align-items, so a popup taller than
+   the screen (long reviews on phones) starts at the top and scrolls, rather than pushing its
+   avatar and close button above the viewport where they can't be reached */
+.modal-container {
+  align-items: flex-start;
+  padding-block: 16px;
+}
+
+.testimonials-modal { margin: auto; }

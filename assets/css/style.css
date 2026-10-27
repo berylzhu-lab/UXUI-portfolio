@@ -2829,3 +2829,31 @@ article,
 
   .sidebar { margin-bottom: 32px; }
 }
+
+
+/*-----------------------------------*\
+  #ABOUT RHYTHM
+  Every About section uses the same rule: content starts 20px under its title and lines up with the
+  title's left edge. Testimonial avatars sit inside their card instead of poking up into the title gap.
+\*-----------------------------------*/
+
+@media (min-width: 580px) {
+
+  .testimonials-title { margin-bottom: 20px; }
+
+  .testimonials-list { padding-top: 10px; } /* the title shares its row with the taller arrow buttons */
+
+  .testimonials-avatar-box { top: 25px; left: 30px; transform: none; }
+
+  .testimonials-item-title {
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  /* logos start at the title's left edge; the side padding stays inside the scroll area */
+  .clients-title { margin-bottom: 20px; }
+  .clients-list { padding: 0 30px 30px; scroll-padding-inline: 30px; }
+
+}

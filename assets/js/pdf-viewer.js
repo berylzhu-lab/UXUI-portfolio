@@ -25,6 +25,7 @@
 
   let pdfjsPromise = null;
   let currentDoc = null;
+  let currentVideos = [];
   let observer = null;
   let openToken = 0;
   let lastFocus = null;
@@ -71,11 +72,36 @@
       return page.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
     }).then(function () {
       holder.classList.add('loaded');
+      addVideos(pageNum, holder);
     });
   };
 
-  const open = function (src, title, pageUrl) {
+  // a link's data-pdf-videos lists players to lay over a page:
+  // [{ "page": 32, "src": "<embed url>", "box": [left, top, width, height] }] with the box in % of the page
+  const addVideos = function (pageNum, holder) {
+    currentVideos.forEach(function (v) {
+      if (v.page !== pageNum) return;
+      // the player sits slightly oversized in a clipping box, so the hairline of letterboxing
+      // a near-but-not-exact aspect ratio leaves is cropped away
+      const box = document.createElement('div');
+      box.className = 'pdf-video';
+      box.style.left = v.box[0] + '%';
+      box.style.top = v.box[1] + '%';
+      box.style.width = v.box[2] + '%';
+      box.style.height = v.box[3] + '%';
+      const frame = document.createElement('iframe');
+      frame.src = v.src;
+      frame.title = v.title || 'Video';
+      frame.allow = 'autoplay; fullscreen';
+      frame.allowFullscreen = true;
+      box.appendChild(frame);
+      holder.appendChild(box);
+    });
+  };
+
+  const open = function (src, title, pageUrl, videos) {
     const token = ++openToken;
+    currentVideos = videos || [];
 
     lastFocus = document.activeElement;
     titleEl.textContent = title;
@@ -168,7 +194,9 @@
       if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
       e.preventDefault();
       const title = (link.querySelector('.project-title') || link).textContent.trim();
-      open(link.dataset.pdf, title, link.getAttribute('href'));
+      let videos = [];
+      try { videos = JSON.parse(link.dataset.pdfVideos || '[]'); } catch (err) { }
+      open(link.dataset.pdf, title, link.getAttribute('href'), videos);
     });
   });
 

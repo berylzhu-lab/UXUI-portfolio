@@ -92,6 +92,7 @@ const zh = {
   "filter.visual": "视觉设计",
   "filter.select": "选择类别",
   "project.zoo": "红山森林动物园 App",
+  "project.coocoo": "CooCoo · AI 厨房助手",
   "pdf.newTab": "在新标签页打开",
   "map.title": "美国 西雅图 · 华盛顿大学",
   "map.open": "展开地图",

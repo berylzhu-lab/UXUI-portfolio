@@ -2779,6 +2779,23 @@ article,
 
 .pdf-page canvas { height: 100%; }
 
+/* a video player laid over its frame on a PDF page (pdf-viewer.js sets the box) */
+.pdf-page { position: relative; }
+
+.pdf-video {
+  position: absolute;
+  overflow: hidden;
+  background: #fff;
+}
+
+.pdf-video iframe {
+  position: absolute;
+  inset: -1.5%;
+  width: 103%;
+  height: 103%;
+  border: 0;
+}
+
 /* the PDF viewer spans the sidebar + main content columns; pdf-viewer.js sets left/width/top */
 .pdf-modal-panel {
   position: absolute;

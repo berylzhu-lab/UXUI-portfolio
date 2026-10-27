@@ -29,6 +29,7 @@ const zh = {
   "about.p1": "我是一名常驻西雅图的 UX 与产品设计师，目前就读于华盛顿大学数字媒体传播硕士项目（预计 2027 年春季毕业）。我的背景横跨建筑学、数字媒体与工程，UX 实践涵盖 AI 3D 生成产品、教育以及非营利机构网站等领域。",
   "about.p2": "我将 Figma、Unity 等工具的技术能力与严谨的用户研究相结合，能够快速制作原型，并通过真实用户验证设计。目前我在 Meshy 担任 Product Builder 实习生，正在寻找全职 UX 设计岗位。",
   "about.servicesTitle": "我在做什么",
+  "about.workTitle": "精选作品",
   "service.1.title": "UX 与视觉设计",
   "service.1.text": "主导端到端的数字产品设计，打造兼具美感与高可用性、以人为本的产品体验。",
   "service.2.title": "设计系统与原型",

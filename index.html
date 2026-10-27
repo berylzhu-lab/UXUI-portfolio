@@ -16,7 +16,7 @@
   <meta property="og:site_name" content="berylzhu.com">
   <meta property="og:title" content="Jiajun (Beryl) Zhu | UX & Product Designer">
   <meta property="og:description" content="UX & Product Designer in Seattle and Digital Media master's candidate at the University of Washington. Portfolio, resume and contact.">
-  <meta property="og:image" content="https://berylzhu.com/assets/images/og-image.png?v=20261027c">
+  <meta property="og:image" content="https://berylzhu.com/assets/images/og-image.png?v=20261027e">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="627">
   <meta property="og:image:alt" content="Pixel cat avatar beside the name Jiajun (Beryl) Zhu, UX & Product Designer">
@@ -25,14 +25,14 @@
   <!--
     - favicon
   -->
-  <link rel="icon" type="image/png" sizes="64x64" href="./assets/images/favicon-64.png?v=20261027c">
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32.png?v=20261027c">
-  <link rel="apple-touch-icon" href="./assets/images/apple-touch-icon.png?v=20261027c">
+  <link rel="icon" type="image/png" sizes="64x64" href="./assets/images/favicon-64.png?v=20261027e">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32.png?v=20261027e">
+  <link rel="apple-touch-icon" href="./assets/images/apple-touch-icon.png?v=20261027e">
 
   <!--
     - custom css link
   -->
-  <link rel="stylesheet" href="./assets/css/style.css?v=20261027c">
+  <link rel="stylesheet" href="./assets/css/style.css?v=20261027e">
 
   <!--
     - apply the saved day/night theme before first paint (night is the default)
@@ -190,10 +190,6 @@
           </li>
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link="portfolio" data-i18n="nav.portfolio">Portfolio</button>
-          </li>
-
-          <li class="navbar-item">
             <button class="navbar-link" data-nav-link="contact" data-i18n="nav.contact">Contact</button>
           </li>
 
@@ -242,82 +238,214 @@
 
 
         <!--
-          - service
+          - selected work (moved up from the old Portfolio tab)
         -->
 
-        <section class="service">
+        <h3 class="h3 service-title" data-i18n="about.workTitle">Selected work</h3>
 
-          <h3 class="h3 service-title" data-i18n="about.servicesTitle">What I'm doing</h3>
+        <section class="projects">
 
-          <ul class="service-list">
+          <ul class="filter-list">
 
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/Group 8867.png" alt="design icon" width="34">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title" data-i18n="service.1.title">UX & Visual Design</h4>
-
-                <p class="service-item-text" data-i18n="service.1.text">
-                  Leading end-to-end digital product design to build engaging, human-centered 
-                  experiences that seamlessly balance aesthetics with high usability.
-                </p>
-              </div>
-
+            <li class="filter-item">
+              <button class="active" data-filter-btn="all" data-i18n="filter.all">All</button>
             </li>
 
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/Group 8868.png" alt="Visual Design icon" width="34">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title" data-i18n="service.2.title">Design Systems & Prototyping</h4>
-
-                <p class="service-item-text" data-i18n="service.2.text">
-                  Building scalable visual component libraries and high-fidelity prototypes to 
-                  ensure brand consistency and streamline cross-functional workflows.
-                </p>
-              </div>
-
+            <li class="filter-item">
+              <button data-filter-btn="product design" data-i18n="filter.product">Product Design</button>
             </li>
 
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/Group 8869.png" alt="mobile app icon" width="34">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title" data-i18n="service.3.title">Motion & Interaction</h4>
-
-                <p class="service-item-text" data-i18n="service.3.text">
-                  Utilizing dynamic visual storytelling and micro-interactions to provide 
-                  intuitive visual feedback and enhance overall digital engagement.
-                </p>
-              </div>
-
+            <li class="filter-item">
+              <button data-filter-btn="game & spatial" data-i18n="filter.game">Game & Spatial</button>
             </li>
 
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/Group 8870.png" alt="camera icon" width="34">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title" data-i18n="service.4.title">Spatial & Game UX</h4>
-
-                <p class="service-item-text" data-i18n="service.4.text">
-                  Leveraging 3D modeling and engine capabilities to build immersive player 
-                  experiences, intuitive HUDs, and engaging AR/VR environments.
-                </p>
-              </div>
-
+            <li class="filter-item">
+              <button data-filter-btn="visual design" data-i18n="filter.visual">Visual Design</button>
             </li>
+
+          </ul>
+
+          <div class="filter-select-box">
+
+            <button class="filter-select" data-select>
+
+              <div class="select-value" data-selecct-value data-i18n="filter.select">Select category</div>
+
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
+              </div>
+
+            </button>
+
+            <ul class="select-list">
+
+              <li class="select-item">
+                <button data-select-item="all" data-i18n="filter.all">All</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item="product design" data-i18n="filter.product">Product Design</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item="game & spatial" data-i18n="filter.game">Game & Spatial</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item="visual design" data-i18n="filter.visual">Visual Design</button>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <ul class="project-list">
+
+            <li class="project-item  active" data-filter-item data-category="product design">
+              <a href="project-8.html" target="_blank" data-pdf="./assets/pdf/bbct.pdf">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-8.jpg?v=20261027d" alt="Broadway Bound Children's Theatre website redesign" loading="lazy">
+                </figure>
+
+                <h3 class="project-title" data-i18n="project.bbct">Broadway Bound Children's Theatre · Website Redesign</h3>
+
+                <p class="project-category" data-i18n="filter.product">Product Design</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="product design">
+              <a href="project-7.html" target="_blank" data-pdf="./assets/pdf/coocoo.pdf"
+                data-pdf-videos='[{"page": 28, "title": "CooCoo prototype walkthrough", "src": "https://drive.google.com/file/d/1-TcCzWmmP1trzWdCvjCGAbaFFIXc2Lnd/preview", "box": [16.63, 3.8, 66.94, 89.26]}]'>
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-7.jpg" alt="CooCoo AI kitchen companion app" loading="lazy">
+                </figure>
+
+                <h3 class="project-title" data-i18n="project.coocoo">CooCoo · AI Kitchen Companion</h3>
+
+                <p class="project-category" data-i18n="filter.product">Product Design</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="game & spatial">
+              <a href="project-1.html" target="_blank" data-pdf="./assets/pdf/xr.pdf">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-1.jpg" alt="emotional ecosystem" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Emotional Ecosystem</h3>
+
+                <p class="project-category" data-i18n="filter.game">Game & Spatial</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="game & spatial">
+              <a href="project-2.html" target="_blank" data-pdf="./assets/pdf/wfc.pdf">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-2.jpg" alt="shadow city" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Shadow City</h3>
+
+                <p class="project-category" data-i18n="filter.game">Game & Spatial</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="product design">
+              <a href="project-3.html" target="_blank" data-pdf="./assets/pdf/zoo.pdf">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-3.jpg" alt="hongshan forest zoo app" loading="lazy">
+                </figure>
+
+                <h3 class="project-title" data-i18n="project.zoo">Hongshan Forest Zoo App</h3>
+
+                <p class="project-category" data-i18n="filter.product">Product Design</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="game & spatial">
+              <a href="project-4.html" target="_blank" data-pdf="./assets/pdf/mushroom.pdf">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-4.jpg" alt="mushroom" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Mushroom</h3>
+
+                <p class="project-category" data-i18n="filter.game">Game & Spatial</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="game & spatial">
+              <a href="project-5.html" target="_blank" data-pdf="./assets/pdf/lilaland.pdf">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-5.jpg" alt="lilaland" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Lilaland</h3>
+
+                <p class="project-category" data-i18n="filter.game">Game & Spatial</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="game & spatial">
+              <a href="project-6.html" target="_blank" data-pdf="./assets/pdf/bamboo.pdf">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-6.jpg" alt="bamboo shadow" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Bamboo Shadow</h3>
+
+                <p class="project-category" data-i18n="filter.game">Game & Spatial</p>
+
+              </a>
+            </li>
+
 
           </ul>
 
@@ -467,7 +595,7 @@
                 <canvas class="pixel-avatar" width="32" height="32" role="img" aria-label="Leota Mohr" data-pixel-avatar="leota" data-modal-img></canvas>
               </figure>
 
-              <img src="./assets/images/icon-quote.svg?v=20261027c" alt="quote icon">
+              <img src="./assets/images/icon-quote.svg?v=20261027e" alt="quote icon">
             </div>
 
             <div class="modal-content">
@@ -769,234 +897,6 @@
 
 
       <!--
-        - #PORTFOLIO
-      -->
-
-      <article class="portfolio" data-page="portfolio">
-
-        <header>
-          <h2 class="h2 article-title" data-i18n="portfolio.title">Portfolio</h2>
-        </header>
-
-        <section class="projects">
-
-          <ul class="filter-list">
-
-            <li class="filter-item">
-              <button class="active" data-filter-btn="all" data-i18n="filter.all">All</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn="product design" data-i18n="filter.product">Product Design</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn="game & spatial" data-i18n="filter.game">Game & Spatial</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn="visual design" data-i18n="filter.visual">Visual Design</button>
-            </li>
-
-          </ul>
-
-          <div class="filter-select-box">
-
-            <button class="filter-select" data-select>
-
-              <div class="select-value" data-selecct-value data-i18n="filter.select">Select category</div>
-
-              <div class="select-icon">
-                <ion-icon name="chevron-down"></ion-icon>
-              </div>
-
-            </button>
-
-            <ul class="select-list">
-
-              <li class="select-item">
-                <button data-select-item="all" data-i18n="filter.all">All</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item="product design" data-i18n="filter.product">Product Design</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item="game & spatial" data-i18n="filter.game">Game & Spatial</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item="visual design" data-i18n="filter.visual">Visual Design</button>
-              </li>
-
-            </ul>
-
-          </div>
-
-          <ul class="project-list">
-
-            <li class="project-item  active" data-filter-item data-category="product design">
-              <a href="project-8.html" target="_blank" data-pdf="./assets/pdf/bbct.pdf">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-8.jpg?v=20261027d" alt="Broadway Bound Children's Theatre website redesign" loading="lazy">
-                </figure>
-
-                <h3 class="project-title" data-i18n="project.bbct">Broadway Bound Children's Theatre · Website Redesign</h3>
-
-                <p class="project-category" data-i18n="filter.product">Product Design</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="product design">
-              <a href="project-7.html" target="_blank" data-pdf="./assets/pdf/coocoo.pdf"
-                data-pdf-videos='[{"page": 28, "title": "CooCoo prototype walkthrough", "src": "https://drive.google.com/file/d/1-TcCzWmmP1trzWdCvjCGAbaFFIXc2Lnd/preview", "box": [16.63, 3.8, 66.94, 89.26]}]'>
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-7.jpg" alt="CooCoo AI kitchen companion app" loading="lazy">
-                </figure>
-
-                <h3 class="project-title" data-i18n="project.coocoo">CooCoo · AI Kitchen Companion</h3>
-
-                <p class="project-category" data-i18n="filter.product">Product Design</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="game & spatial">
-              <a href="project-1.html" target="_blank" data-pdf="./assets/pdf/xr.pdf">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-1.jpg" alt="emotional ecosystem" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Emotional Ecosystem</h3>
-
-                <p class="project-category" data-i18n="filter.game">Game & Spatial</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="game & spatial">
-              <a href="project-2.html" target="_blank" data-pdf="./assets/pdf/wfc.pdf">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-2.jpg" alt="shadow city" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Shadow City</h3>
-
-                <p class="project-category" data-i18n="filter.game">Game & Spatial</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="product design">
-              <a href="project-3.html" target="_blank" data-pdf="./assets/pdf/zoo.pdf">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-3.jpg" alt="hongshan forest zoo app" loading="lazy">
-                </figure>
-
-                <h3 class="project-title" data-i18n="project.zoo">Hongshan Forest Zoo App</h3>
-
-                <p class="project-category" data-i18n="filter.product">Product Design</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="game & spatial">
-              <a href="project-4.html" target="_blank" data-pdf="./assets/pdf/mushroom.pdf">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-4.jpg" alt="mushroom" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Mushroom</h3>
-
-                <p class="project-category" data-i18n="filter.game">Game & Spatial</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="game & spatial">
-              <a href="project-5.html" target="_blank" data-pdf="./assets/pdf/lilaland.pdf">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-5.jpg" alt="lilaland" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Lilaland</h3>
-
-                <p class="project-category" data-i18n="filter.game">Game & Spatial</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="game & spatial">
-              <a href="project-6.html" target="_blank" data-pdf="./assets/pdf/bamboo.pdf">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-6.jpg" alt="bamboo shadow" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Bamboo Shadow</h3>
-
-                <p class="project-category" data-i18n="filter.game">Game & Spatial</p>
-
-              </a>
-            </li>
-
-
-          </ul>
-
-        </section>
-
-      </article>
-
-
-
-
-
-
-
-
-
-      <!--
         - #CONTACT
       -->
 
@@ -1117,16 +1017,16 @@
   <!--
     - custom js link
   -->
-  <script src="./assets/js/pixel-icons.js?v=20261027c"></script>
-  <script src="./assets/js/script.js?v=20261027c"></script>
-  <script src="./assets/js/i18n.js?v=20261027c"></script>
+  <script src="./assets/js/pixel-icons.js?v=20261027e"></script>
+  <script src="./assets/js/script.js?v=20261027e"></script>
+  <script src="./assets/js/i18n.js?v=20261027e"></script>
 
-  <script src="./assets/js/cat-avatar.js?v=20261027c"></script>
-  <script src="./assets/js/pixel-avatars.js?v=20261027c"></script>
-  <script src="./assets/js/pixel-game.js?v=20261027c"></script>
-  <script src="./assets/js/pdf-viewer.js?v=20261027c"></script>
-  <script src="./assets/js/mailbox.js?v=20261027c"></script>
-  <script src="./assets/js/game-map.js?v=20261027c"></script>
+  <script src="./assets/js/cat-avatar.js?v=20261027e"></script>
+  <script src="./assets/js/pixel-avatars.js?v=20261027e"></script>
+  <script src="./assets/js/pixel-game.js?v=20261027e"></script>
+  <script src="./assets/js/pdf-viewer.js?v=20261027e"></script>
+  <script src="./assets/js/mailbox.js?v=20261027e"></script>
+  <script src="./assets/js/game-map.js?v=20261027e"></script>
 
 </body>
 

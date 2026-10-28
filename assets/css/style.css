@@ -2800,6 +2800,16 @@ article,
   border: 0;
 }
 
+/* a native player fills its box exactly, rounded like the poster it covers */
+.pdf-video:has(video) { background: #000; border-radius: 0.8%; }
+
+.pdf-video video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* the PDF viewer spans the sidebar + main content columns; pdf-viewer.js sets left/width/top */
 .pdf-modal-panel {
   position: absolute;

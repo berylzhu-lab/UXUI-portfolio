@@ -89,11 +89,23 @@
       box.style.top = v.box[1] + '%';
       box.style.width = v.box[2] + '%';
       box.style.height = v.box[3] + '%';
-      const frame = document.createElement('iframe');
-      frame.src = v.src;
-      frame.title = v.title || 'Video';
-      frame.allow = 'autoplay; fullscreen';
-      frame.allowFullscreen = true;
+      // a video file plays in a native player; anything else (Drive, YouTube) is an embed page
+      let frame;
+      if (/\.(mp4|webm)(\?|$)/i.test(v.src)) {
+        frame = document.createElement('video');
+        frame.src = v.src;
+        frame.controls = true;
+        frame.playsInline = true;
+        frame.preload = 'metadata';
+        if (v.poster) frame.poster = v.poster;
+        frame.setAttribute('aria-label', v.title || 'Video');
+      } else {
+        frame = document.createElement('iframe');
+        frame.src = v.src;
+        frame.title = v.title || 'Video';
+        frame.allow = 'autoplay; fullscreen';
+        frame.allowFullscreen = true;
+      }
       box.appendChild(frame);
       holder.appendChild(box);
     });

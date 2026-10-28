@@ -95,6 +95,8 @@ const zh = {
   "project.zoo": "红山森林动物园 App",
   "project.coocoo": "CooCoo · AI 厨房助手",
   "project.bbct": "Broadway Bound 儿童剧院 · 网站改版",
+  "wip.title": "施工中",
+  "wip.text": "新作品正在路上，敬请期待。",
   "pdf.newTab": "在新标签页打开",
   "map.title": "美国 西雅图 · 华盛顿大学",
   "map.open": "展开地图",

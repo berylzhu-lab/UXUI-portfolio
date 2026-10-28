@@ -83,8 +83,11 @@ for (let i = 0; i < selectItems.length; i++) {
 
 // filter variables
 const filterItems = document.querySelectorAll("[data-filter-item]");
+const wipScene = document.querySelector("[data-wip]");
 
 const filterFunc = function (selectedValue) {
+
+  let shown = 0;
 
   for (let i = 0; i < filterItems.length; i++) {
 
@@ -96,7 +99,12 @@ const filterFunc = function (selectedValue) {
       filterItems[i].classList.remove("active");
     }
 
+    if (filterItems[i].classList.contains("active")) shown++;
+
   }
+
+  // a category with nothing in it yet gets the under-construction scene (assets/js/wip.js)
+  if (wipScene) wipScene.classList.toggle("active", shown === 0);
 
 }
 

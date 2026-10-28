@@ -2857,3 +2857,43 @@ article,
   .clients-list { padding: 0 30px 30px; scroll-padding-inline: 30px; }
 
 }
+
+
+/*-----------------------------------*\
+  #UNDER CONSTRUCTION (empty work category)
+\*-----------------------------------*/
+
+/* hidden until the filter finds nothing in a category (script.js adds .active) */
+.wip-scene { display: none; }
+
+.wip-scene.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 30px 0 20px;
+  text-align: center;
+  animation: scaleUp 0.25s ease forwards;
+}
+
+/* 2 CSS px per fine pixel, like the mailbox */
+.wip-canvas {
+  display: block;
+  width: 288px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+.wip-title {
+  color: var(--white-2);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-500);
+}
+
+.wip-text {
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+}

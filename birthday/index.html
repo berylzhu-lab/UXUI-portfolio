@@ -193,7 +193,6 @@ footer small,footer .ctl{pointer-events:auto}
 .ddList::-webkit-scrollbar{width:16px}
 .ddList::-webkit-scrollbar-track{background:repeating-conic-gradient(#fff 0 25%,var(--grey) 0 50%) 0 0/2px 2px}
 .ddList::-webkit-scrollbar-thumb{background:var(--grey);box-shadow:inset -1px -1px 0 #000,inset 1px 1px 0 #fff,inset -2px -2px 0 var(--lo)}
-.ddBtn.empty{color:#6a6a7c}
 .ddBtn:hover{background-color:#fff}
 .ddBtn:focus-visible{outline:2px solid var(--title1);outline-offset:1px}
 .hint{margin:0;font:400 var(--fs-sub)/1.2 var(--term);color:#333}
@@ -322,8 +321,8 @@ const RANKS={"1001":[57,11956],"1002":[65,11903],"1003":[33,12099],"1004":[74,11
 
 const T={
  en:{tagline:"Click the monitor. Tell it your birthday. Learn something useless.",open:"Open Birthday.exe and enter your birthday",formTitle:"Birthday.exe",
-  intro:"Oh! A visitor. Nobody has clicked me since 1999. When's your birthday? I know something strange about it.",month:"Birth month",day:"Birth day",year:"Birth year, optional",lead:"I was born on",sep:",",yearPh:"year?",hint:"Make a wish first. I'll wait. Add your birth year for two more candles and two more secrets.",ok:"Blow out the candles",cancel:"Not today",blow:"Fwoooo…",blown:"Wish received.",
-  errYear:y=>`Enter a year from 1900 to ${y}, or leave it blank.`,errFuture:"That date is in the future. Enter a date that has already happened.",errLeap:y=>`${y} was not a leap year, so it had no February 29. Check the year or leave it blank.`,
+  intro:"Oh! A visitor. Nobody has clicked me since 1999. When's your birthday? I know something strange about it.",month:"Birth month",day:"Birth day",year:"Birth year, optional",lead:"I was born on",sep:",",hint:"Make a wish first. I'll wait. Add your birth year for two more candles and two more secrets.",ok:"Blow out the candles",cancel:"Not today",blow:"Fwoooo…",blown:"Wish received.",
+  errDate:"Pick a month and a day first.",errYear:y=>`Enter a year from 1900 to ${y}, or leave it blank.`,errFuture:"That date is in the future. Enter a date that has already happened.",errLeap:y=>`${y} was not a leap year, so it had no February 29. Check the year or leave it blank.`,
   load:"Processing your wish…",path:m=>`C:\\WISHES\\${m}\\ODD_FACTS.DAT`,factTitle:"Wish granted",next:"Next fact",again:"Another birthday",count:(a,b)=>`Fact ${a} of ${b}`,
   addYear:"Add your birth year to unlock two more facts.",tagHist:(d,y)=>`${d} · ${y}`,tagRank:"Birthday rarity",tagBorn:"The day you arrived",tagOrbit:"Your mileage",
   rank:(d,r,a)=>`Among US births from 2000 to 2014, ${d} ranks #${r} of 366 for popularity, with about ${a} babies born per day.`,
@@ -336,8 +335,8 @@ const T={
   days:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
   phases:["new","waxing crescent","first quarter","waxing gibbous","full","waning gibbous","last quarter","waning crescent"],icons:["My Birthday","Y2K_BUG.TXT","Trash"]},
  zh:{tagline:"点一下显示器，告诉它你的生日，收获一条没什么用的知识。",open:"打开 Birthday.exe 并输入生日",formTitle:"Birthday.exe",
-  intro:"哇，有人来了！自从 1999 年就没人点过我。你生日是哪天？我知道一件关于它的怪事。",month:"出生月份",day:"出生日期",year:"出生年份，可不填",lead:"我出生在",sep:"年",yearPh:"哪一",hint:"先许个愿，我等你。填上出生年份，多两根蜡烛，也多两个秘密。",ok:"吹蜡烛",cancel:"下次吧",blow:"呼——",blown:"愿望收到了。",
-  errYear:y=>`请输入 1900 到 ${y} 之间的年份，或者留空。`,errFuture:"这个日期还没到，请输入已经过去的日期。",errLeap:y=>`${y} 年不是闰年，没有 2 月 29 日。请检查年份，或者留空。`,
+  intro:"哇，有人来了！自从 1999 年就没人点过我。你生日是哪天？我知道一件关于它的怪事。",month:"出生月份",day:"出生日期",year:"出生年份，可不填",lead:"我出生在",sep:"年",hint:"先许个愿，我等你。填上出生年份，多两根蜡烛，也多两个秘密。",ok:"吹蜡烛",cancel:"下次吧",blow:"呼——",blown:"愿望收到了。",
+  errDate:"先选好月和日。",errYear:y=>`请输入 1900 到 ${y} 之间的年份，或者留空。`,errFuture:"这个日期还没到，请输入已经过去的日期。",errLeap:y=>`${y} 年不是闰年，没有 2 月 29 日。请检查年份，或者留空。`,
   load:"正在处理你的愿望…",path:m=>`C:\\WISHES\\${m}\\ODD_FACTS.DAT`,factTitle:"愿望实现了",next:"下一条",again:"换个生日",count:(a,b)=>`第 ${a}/${b} 条`,
   addYear:"填上出生年份，可以再解锁两条。",tagHist:(d,y)=>`${d} · ${y} 年`,tagRank:"生日稀有度",tagBorn:"你出生的那天",tagOrbit:"你的里程",
   rank:(d,r,a)=>`在 2000 到 2014 年的美国出生数据中，${d}的常见度在 366 天里排第 ${r}，平均每天约有 ${a} 名婴儿出生。`,
@@ -710,17 +709,17 @@ function applyLang(){
   const l=L();document.documentElement.lang=lang==="zh"?"zh":"en";document.body.lang=lang;
   $("tagline").textContent=l.tagline;$("screenBtn").setAttribute("aria-label",l.open);
   $("formTitle").textContent=l.formTitle;$("formIntro").textContent=l.intro;
-  $("libLead").textContent=l.lead;$("libSep").textContent=l.sep;$("wishHint").textContent=l.hint;$("year").options[0].textContent=l.yearPh;
+  $("libLead").textContent=l.lead;$("libSep").textContent=l.sep;$("wishHint").textContent=l.hint;
   $("month").setAttribute("aria-label",l.month);$("day").setAttribute("aria-label",l.day);$("year").setAttribute("aria-label",l.year);
   $("ok").textContent=l.ok;$("cancel").textContent=l.cancel;$("loadTitle").textContent=l.load;
   $("factTitle").textContent=l.factTitle;$("nextFact").textContent=l.next;$("again").textContent=l.again;
   $("credits").innerHTML=l.credits;$("langBtn").textContent=l.lang;$("soundBtn").setAttribute("aria-label",l.sound(soundOn));$("soundBtn").title=l.sound(soundOn);$("soundOn").style.display=soundOn?"":"none";$("soundOff").style.display=soundOn?"none":"";
-  const mSel=$("month"),v=mSel.value||"1";mSel.innerHTML=l.months.map((n,i)=>`<option value="${i+1}">${n}</option>`).join("");mSel.value=v;
+  const mSel=$("month"),v=mSel.value;mSel.innerHTML='<option value=""></option>'+l.months.map((n,i)=>`<option value="${i+1}">${n}</option>`).join("");mSel.value=v;
   fillDays();$("err").textContent="";clearStack();renderFact();
 }
-function fillDays(){const m=+$("month").value,sel=$("day"),v=+sel.value||1;
-  sel.innerHTML="";for(let d=1;d<=DIM[m-1];d++){const o=document.createElement("option");o.value=d;o.textContent=lang==="zh"?d+" 日":d;sel.append(o)}
-  sel.value=Math.min(v,DIM[m-1]);dds.forEach(d=>d.sync());}
+function fillDays(){const m=+$("month").value,sel=$("day"),v=+sel.value,max=m?DIM[m-1]:31;
+  sel.innerHTML="";sel.append(new Option("",""));for(let d=1;d<=max;d++){const o=document.createElement("option");o.value=d;o.textContent=lang==="zh"?d+" 日":d;sel.append(o)}
+  sel.value=v?Math.min(v,max):"";dds.forEach(d=>d.sync());}
 function setCandles(svg,n){svg.querySelectorAll(".c").forEach((c,i)=>c.classList.toggle("off",n===2&&(i===0||i===3)))}
 function yearIsValid(){const v=$("year").value.trim(),y=+v;return /^\d{4}$/.test(v)&&y>=1900&&y<=new Date().getFullYear()}
 function syncCandles(){setCandles($("cake"),yearIsValid()?4:2)}
@@ -746,6 +745,7 @@ function closeAll(){
 }
 function submit(e){
   e.preventDefault();closeDD();const l=L(),m=+$("month").value,d=+$("day").value,raw=$("year").value.trim(),now=new Date(),cy=now.getFullYear();let y=null;
+  if(!m||!d){$("err").textContent=l.errDate;blip(160,.2);return}
   if(raw){y=+raw;if(!/^\d{4}$/.test(raw)||y<1900||y>cy){$("err").textContent=l.errYear(cy);blip(160,.2);return}
     if(m===2&&d===29&&!((y%4===0&&y%100!==0)||y%400===0)){$("err").textContent=l.errLeap(y);blip(160,.2);return}
     if(Date.UTC(y,m-1,d)>now.getTime()){$("err").textContent=l.errFuture;blip(160,.2);return}}
@@ -797,7 +797,7 @@ function ddActive(d,i,scroll){
 }
 function ddOpen(d){
   closeDD();openDD=d;d.list.innerHTML="";
-  [...d.sel.options].forEach((o,i)=>{const li=document.createElement("li");li.id=d.sel.id+"Opt"+i;li.dataset.i=i;li.setAttribute("role","option");li.setAttribute("aria-selected",i===d.sel.selectedIndex);li.textContent=o.textContent;d.list.append(li)});
+  [...d.sel.options].forEach((o,i)=>{const li=document.createElement("li");li.id=d.sel.id+"Opt"+i;li.dataset.i=i;li.setAttribute("role","option");li.setAttribute("aria-selected",i===d.sel.selectedIndex);li.textContent=o.textContent;if(!o.textContent)li.setAttribute("aria-label",d.sel.getAttribute("aria-label"));d.list.append(li)});
   d.list.hidden=false;d.btn.setAttribute("aria-expanded","true");
   const r=d.btn.getBoundingClientRect(),gap=8,below=innerHeight-r.bottom-gap,above=r.top-gap,want=Math.min(d.list.scrollHeight,252),down=below>=want||below>=above,room=Math.max(72,Math.min(want,down?below:above));
   d.list.style.minWidth=r.width+"px";d.list.style.maxHeight=room+"px";
@@ -807,7 +807,7 @@ function ddOpen(d){
   if(li)d.list.scrollTop=li.offsetTop-(d.list.clientHeight-li.offsetHeight)/2;
   ddActive(d,start,false);blip(700,.03,.02);
 }
-function ddChoose(d,i){d.sel.selectedIndex=i;d.sel.dispatchEvent(new Event("change"));d.sync();blip(880,.04,.025);closeDD();d.btn.focus({preventScroll:true})}
+function ddChoose(d,i){$("err").textContent="";d.sel.selectedIndex=i;d.sel.dispatchEvent(new Event("change"));d.sync();blip(880,.04,.025);closeDD();d.btn.focus({preventScroll:true})}
 function enhanceSelect(sel){
   const wrap=document.createElement("span"),btn=document.createElement("button"),face=document.createElement("span"),list=document.createElement("ul");
   wrap.className="dd dd-"+sel.id;sel.parentNode.insertBefore(wrap,sel);wrap.append(sel,btn);sel.hidden=true;
@@ -817,7 +817,7 @@ function enhanceSelect(sel){
   const d={sel,btn,face,list,active:0,sync(){
     const o=sel.options[sel.selectedIndex],t=o?o.textContent:"";face.innerHTML="";
     [...sel.options].forEach(op=>{const s=document.createElement("span");s.className="ddSize";s.setAttribute("aria-hidden","true");s.textContent=op.textContent;face.append(s)});
-    const c=document.createElement("span");c.textContent=t;face.append(c);btn.classList.toggle("empty",sel.value==="");btn.setAttribute("aria-label",(sel.getAttribute("aria-label")||"")+": "+t);
+    const c=document.createElement("span");c.textContent=t;face.append(c);btn.setAttribute("aria-label",(sel.getAttribute("aria-label")||"")+": "+t);
   }};
   sel.addEventListener("change",d.sync);
   btn.addEventListener("click",()=>{openDD===d?closeDD():ddOpen(d)});

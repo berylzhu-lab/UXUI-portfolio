@@ -681,6 +681,8 @@ function renderFact(){
   if(!current)return;
   const facts=buildFacts(current.m,current.d,current.y),f=facts[idx%facts.length],l=L();
   lightCandle(idx%facts.length,facts.length);
+  const isLast=idx%facts.length===facts.length-1,hadFocus=document.activeElement===$("nextFact");
+  $("nextFact").hidden=isLast;if(isLast&&hadFocus)$("again").focus();
   $("factTag").textContent=f.tag;$("factNote").textContent=f.note||"";
   $("factLive").textContent=f.text;$("factCount").textContent=l.count(idx%facts.length+1,facts.length);
   $("factDate").textContent=fmtDate(current.m,current.d)+(current.y?(lang==="zh"?`, ${current.y} 年`:`, ${current.y}`):"");

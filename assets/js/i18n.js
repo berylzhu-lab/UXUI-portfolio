@@ -99,6 +99,7 @@ const zh = {
   "project.ospi": "OSPI · 视觉传达",
   "project.lilaland": "Lilaland · 跨媒介叙事",
   "project.birthday": "Birthday.exe · Y2K 冷知识机",
+  "project.wenyu": "问屿 · 可以走进去的提问箱",
   "wip.title": "施工中",
   "wip.text": "新作品正在路上，敬请期待。",
   "pdf.newTab": "在新标签页打开",
